@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import "./styles/styles.scss";
 import axios from "axios";
 import registerServiceWorker from './registerServiceWorker';
@@ -37,6 +38,14 @@ class Login extends React.Component {
     );
   }
 }
+
+const routes = (
+  <BrowserRouter>
+    <div>
+      <Route path="/" component={Login}/>
+    </div>
+  </BrowserRouter>
+)
 
 ReactDOM.render(<Login />, document.getElementById("app"));
 registerServiceWorker();

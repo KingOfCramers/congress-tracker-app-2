@@ -1,7 +1,7 @@
 const expect = require("expect");
 const supertest = require("supertest");
 const { ObjectID } = require("mongodb");
-const { app } = require("../api.js");
+const { app } = require("..//api.js");
 const { User } = require("../models/user");
 const jwt = require("jsonwebtoken");
 
@@ -13,14 +13,14 @@ beforeEach(populateUsers);
 describe("GET /", () => {
     it("Should return logged in page if user is authenticated", (done) => {
         supertest(app)
-            .get("/users/me")
+            .get("/api/users/me")
             .set("x-auth", users[0].tokens[0].token)
             .expect(200)
             .end(done);
     });
     it("Should redirect to login page", (done) => {
         supertest(app)
-            .get("/users/me")
+            .get("/api/users/me")
             .expect(401)
             .expect((res) => {
                 expect(res.headers).toNotIncludeKey('x-auth')
@@ -29,12 +29,12 @@ describe("GET /", () => {
     });
 });
 
-describe("POST /users", () => {
+describe("POST /api/users", () => {
     it("Should post a new user", (done) => {
         var email = "uniqueemail@example.com"
         var password = "9webipasd"
         supertest(app)
-            .post("/users") // Post request to the /todos URL
+            .post("/api/users") // Post request to the /todos URL
             .send({
                 email,
                 password
@@ -58,7 +58,7 @@ describe("POST /users", () => {
     });
     it("Should not post a duplicate email", (done) => {
         supertest(app)
-            .post("/users")
+            .post("/api/users")
             .send({
                 email: users[0].email,
                 password: "sidhf89we"
@@ -70,20 +70,20 @@ describe("POST /users", () => {
         var email = "notvalid";
         var password = "";
         supertest(app)
-            .post("/users")
+            .post("/api/users")
             .send({
                 email: email,
                 password: password
             })
-            .expect(400) // Doesn't send anything back becuase our User model breaks it. Catch block of our "/users" route.
+            .expect(400) // Doesn't send anything back becuase our User model breaks it. Catch block of our "/api/users" route.
             .end(done);
     });
 });
 
-describe("POST /users/me", () => {
+describe("POST /api/users/me", () => {
     it("Should return current user if authenticated", (done) => {
         supertest(app)
-            .get("/users/me")
+            .get("/api/users/me")
             .set("x-auth", users[0].tokens[0].token) // Pass in token.
             .expect(200)
             .expect((res) => {
@@ -94,7 +94,7 @@ describe("POST /users/me", () => {
     });
     it("Should return 401 error if not authenticated", (done) => {
         supertest(app)
-            .get("/users/me") // No token! Our authenticate route will fail
+            .get("/api/users/me") // No token! Our authenticate route will fail
             .expect(401)
             .expect((res) => {
                 expect(res.body).toEqual({});
@@ -104,10 +104,10 @@ describe("POST /users/me", () => {
     });
 });
 
-describe("POST /users/login", () => { // This will return a token to the user.
+describe("POST /api/users/login", () => { // This will return a token to the user.
     it("Should login a user with the valid email and password", (done) => {
         supertest(app)
-            .post("/users/login")
+            .post("/api/users/login")
             .send({
                 email: users[1].email, // Pass in login credentials of someone w/out token
                 password: users[1].password
@@ -131,10 +131,10 @@ describe("POST /users/login", () => { // This will return a token to the user.
     });
 });
 
-describe("DELETE /users/me/", () => {
+describe("DELETE /api/users/me/", () => {
     it("Should logout a user by deleting the jwt token", (done) => {
         supertest(app)
-            .delete("/users/me/")
+            .delete("/api/users/me/")
             .set("x-auth", users[0].tokens[0].token)
             .expect(200)
             .end((err,res) => {

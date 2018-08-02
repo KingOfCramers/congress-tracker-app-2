@@ -152,16 +152,16 @@ const { tweetValidator, legislationValidator, caseValidator } = require("../midd
 
 // Routes (exported to server)
 module.exports = (app) => {
-  app.get("/users/me/", authenticate, get_user);
-  app.get("/users/me/trackers", authenticate, get_trackers);
-  app.post("/users", post_new_user);
-  app.post("/users/login", post_login_user, home);
-  app.post("/users/me/trackers/court_cases", authenticate, caseValidator, post_court_case);
-  app.post("/users/me/trackers/legislation", authenticate, legislationValidator, post_legislation);
-  app.post("/users/me/trackers/tweets", authenticate, tweetValidator, post_tweet);
-  app.delete("/users/me/trackers/court_cases/:case_id", authenticate, delete_court_case);
-  app.delete("/users/me/trackers/tweets/:tweet_id", authenticate, delete_tweet);
-  app.delete("/users/me/trackers/legislation/:legislation_id", authenticate, delete_legislation);
-  app.delete("/users/me/trackers", authenticate, delete_trackers);
-  app.delete("/users/me", authenticate, delete_user);
+  app.get("/api/users/me/", authenticate, get_user);
+  app.get("/api/users/me/trackers", authenticate, get_trackers);
+  app.post("/api/users", post_new_user);
+  app.post("/api/users/login", post_login_user, home);
+  app.post("/api/users/me/trackers/court_cases", authenticate, caseValidator, post_court_case);
+  app.post("/api/users/me/trackers/legislation", authenticate, legislationValidator, post_legislation);
+  app.post("/api/users/me/trackers/tweets", authenticate, tweetValidator, post_tweet);
+  app.delete("/api/users/me/trackers/court_cases/:case_id", authenticate, delete_court_case);
+  app.delete("/api/users/me/trackers/tweets/:tweet_id", authenticate, delete_tweet);
+  app.delete("/api/users/me/trackers/legislation/:legislation_id", authenticate, delete_legislation);
+  app.delete("/api/users/me/trackers", authenticate, delete_trackers);
+  app.delete("/api/users/me", authenticate, delete_user);
 }

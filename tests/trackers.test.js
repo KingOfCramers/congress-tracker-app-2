@@ -1,7 +1,7 @@
 const expect = require("expect");
 const supertest = require("supertest");
 const { ObjectID } = require("mongodb");
-const { app } = require("../api.js");
+const { app } = require("..//api.js");
 const { User } = require("../models/user");
 const jwt = require("jsonwebtoken");
 
@@ -10,7 +10,7 @@ const { users, populateUsers } = require("./seed/seed");
 // Reset database for tests
 beforeEach(populateUsers);
 
-describe("/users/me/trackers/tweets", () => {
+describe("/api/users/me/trackers/tweets", () => {
 
     const fakeId = new ObjectID()
     before((done) => {
@@ -27,7 +27,7 @@ describe("/users/me/trackers/tweets", () => {
     it("Should POST a new twitter handle", (done) => {
         const account = "harrisoncramer";
         supertest(app)
-            .post("/users/me/trackers/tweets")
+            .post("/api/users/me/trackers/tweets")
             .set("x-auth", users[0].tokens[0].token) // Pass in token.
             .send({account: account})
             .expect(200)
@@ -45,7 +45,7 @@ describe("/users/me/trackers/tweets", () => {
     it("Should not POST an invalid twitter handle", (done) => {
         const account = "sdsiopdfanusdfoiosd";
         supertest(app)
-            .post("/users/me/trackers/tweets")
+            .post("/api/users/me/trackers/tweets")
             .set("x-auth", users[0].tokens[0].token) // Pass in token.
             .send({account: account})
             .expect(400)
@@ -61,7 +61,7 @@ describe("/users/me/trackers/tweets", () => {
     });
     it("Should DELETE a twitter account", (done) => {
         supertest(app)
-            .delete(`/users/me/trackers/tweets/${fakeId}`)
+            .delete(`/api/users/me/trackers/tweets/${fakeId}`)
             .set("x-auth", users[0].tokens[0].token) // Pass in token.
             .expect(200)
             .end((err,res) => {
@@ -73,7 +73,7 @@ describe("/users/me/trackers/tweets", () => {
     });
 });
 
-describe("/users/me/trackers/legislation", () => {
+describe("/api/users/me/trackers/legislation", () => {
     const fakeId = new ObjectID()
     before((done) => {
         User.findById(users[0]._id)
@@ -89,7 +89,7 @@ describe("/users/me/trackers/legislation", () => {
     it("Should POST a new legislation", (done) => {
         const legislation = "hr1260";
         supertest(app)
-            .post("/users/me/trackers/legislation")
+            .post("/api/users/me/trackers/legislation")
             .set("x-auth", users[0].tokens[0].token) // Pass in token.
             .send({legislation: legislation})
             .expect(200)
@@ -110,7 +110,7 @@ describe("/users/me/trackers/legislation", () => {
     it("Should not POST invalid legislation", (done) => {
         const legislation = {};
         supertest(app)
-            .post("/users/me/trackers/legislation")
+            .post("/api/users/me/trackers/legislation")
             .set("x-auth", users[0].tokens[0].token) // Pass in token.
             .send({legislation: legislation})
             .expect(400)
@@ -126,7 +126,7 @@ describe("/users/me/trackers/legislation", () => {
     });
     it("Should DELETE legislation", (done) => {
         supertest(app)
-            .delete(`/users/me/trackers/legislation/${fakeId}`)
+            .delete(`/api/users/me/trackers/legislation/${fakeId}`)
             .set("x-auth", users[0].tokens[0].token) // Pass in token.
             .expect(200)
             .end((err,res) => {
@@ -139,13 +139,13 @@ describe("/users/me/trackers/legislation", () => {
 });
 
 
-describe("/users/me/trackers/court_cases", () => {
+describe("/api/users/me/trackers/court_cases", () => {
     it("Should POST a new court case", (done) => {
         var new_courtcase = {
             "case_id": 333166
         }
         supertest(app)
-            .post("/users/me/trackers/court_cases")
+            .post("/api/users/me/trackers/court_cases")
             .set("x-auth", users[0].tokens[0].token) // Pass in token.
             .send(new_courtcase)
             .expect(200)
@@ -169,7 +169,7 @@ describe("/users/me/trackers/court_cases", () => {
             "case_id": 0
         }
         supertest(app)
-            .post("/users/me/trackers/court_cases")
+            .post("/api/users/me/trackers/court_cases")
             .set("x-auth", users[0].tokens[0].token) // Pass in token.
             .send(new_courtcase)
             .expect(400)
