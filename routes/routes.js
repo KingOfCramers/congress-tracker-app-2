@@ -38,7 +38,7 @@ const post_login_user = (req,res,next) => {
             req.trackers = user.trackers;
             res.header('x-auth', token)
               .status(200)
-            next();
+              next();
         })
     }).catch((e) => {
         res.status(400).send();

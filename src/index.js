@@ -7,15 +7,15 @@ import registerServiceWorker from './registerServiceWorker';
 
 // Components
 import Login from "./components/Login";
+import Home from "./components/Home";
 
 const routes = (
   <BrowserRouter>
     <div>
-      <Route path="/" component={Login}/>
-
+      <Route exact path="/" component={ Login }/>
     </div>
   </BrowserRouter>
 )
 
-ReactDOM.render(<Login />, document.getElementById("app"));
+ReactDOM.render(routes, document.getElementById("app"));
 registerServiceWorker();

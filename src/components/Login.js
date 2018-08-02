@@ -7,12 +7,12 @@ export default class Login extends React.Component {
     e.preventDefault();
     var email = e.target.elements.email.value;
     var password = e.target.elements.password.value;
-    axios.post("/users/login", {
+    axios.post("api/users/login", {
       email: email,
       password: password
     })
     .then((res) => {
-      console.log(res.data)
+      console.log(res)
     })
     .catch((e) => {
     });
@@ -29,7 +29,6 @@ export default class Login extends React.Component {
           <input type='text' name='password'/>
           <button>Login</button>
         </form>
-        <button onClick={this.emailPassword}>Forgot Password?</button>
       </div>
     );
   }

@@ -16,8 +16,7 @@ const authenticate = (req, res, next) => { // The actual route will not run unti
             })
         .catch(() => {
             // Home Login Page
-            res.status(401)
-                .send();
+            res.redirect(401, "/");
         });
 };
 
