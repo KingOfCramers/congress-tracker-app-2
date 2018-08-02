@@ -1,7 +1,7 @@
 const expect = require("expect");
 const supertest = require("supertest");
 const { ObjectID } = require("mongodb");
-const { app } = require("../server.js");
+const { app } = require("../api.js");
 const { User } = require("../models/user");
 const jwt = require("jsonwebtoken");
 
@@ -141,10 +141,8 @@ describe("/users/me/trackers/legislation", () => {
 
 describe("/users/me/trackers/court_cases", () => {
     it("Should POST a new court case", (done) => {
-        const new_courtcase = {
-            "case_id": 333166,
-            "frequency": 30,
-            "case_name": "Case name"
+        var new_courtcase = {
+            "case_id": 333166
         }
         supertest(app)
             .post("/users/me/trackers/court_cases")
@@ -167,8 +165,8 @@ describe("/users/me/trackers/court_cases", () => {
             });
     });
     it("Should not POST an invalid new court case", (done) => {
-        const new_courtcase = {
-            "frequency": "ssfop"
+        var new_courtcase = {
+            "case_id": 0
         }
         supertest(app)
             .post("/users/me/trackers/court_cases")

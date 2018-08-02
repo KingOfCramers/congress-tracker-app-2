@@ -1,7 +1,7 @@
 const expect = require("expect");
 const supertest = require("supertest");
 const { ObjectID } = require("mongodb");
-const { app } = require("../server.js");
+const { app } = require("../api.js");
 const { User } = require("../models/user");
 const jwt = require("jsonwebtoken");
 
@@ -13,14 +13,14 @@ beforeEach(populateUsers);
 describe("GET /", () => {
     it("Should return logged in page if user is authenticated", (done) => {
         supertest(app)
-            .get("/home")
+            .get("/users/me")
             .set("x-auth", users[0].tokens[0].token)
             .expect(200)
             .end(done);
     });
     it("Should redirect to login page", (done) => {
         supertest(app)
-            .get("/home")
+            .get("/users/me")
             .expect(401)
             .expect((res) => {
                 expect(res.headers).toNotIncludeKey('x-auth')

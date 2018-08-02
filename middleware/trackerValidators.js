@@ -31,9 +31,7 @@ legislationValidator = function(req, res, next){
 };
 
 caseValidator = function(req, res, next){
-    console.log(req.body)
     var case_id = req.body.case_id;
-
     var authOptions = {
         method: 'GET',
         url: `https://www.courtlistener.com/api/rest/v3/dockets/${case_id}/`,
@@ -42,20 +40,19 @@ caseValidator = function(req, res, next){
         },
         json: true
     };
-
-    var url = `https://www.courtlistener.com/api/rest/v3/dockets/${case_id}/`
     axios(authOptions)
         .then((response) => {
+            console.log("YEP")
             req.pacer_data = response.data;
             req.pacer_url = `https://www.courtlistener.com${response.data.absolute_url}`;
             next();
 
             //// Pass in the JSON data to the next middleware?
         })
-        .catch((error) => {
+        .catch(() => {
+            console.log("NOPE")
             res.status(400)
-               .send(error);
-               next();
+               .send("No court case found.");
         });
 };
 
