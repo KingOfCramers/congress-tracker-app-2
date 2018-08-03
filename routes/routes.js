@@ -141,6 +141,10 @@ const delete_court_case = (req,res) => {
       })
       .catch((e) => res.status(400).send(e));}
 
+const test = (req,res) => {
+  res.send({data: "THIS IS FROM EXPRESS"});
+};
+
 const home = (req, res) => {
     res.send(req.trackers);
 };
@@ -152,6 +156,7 @@ const { tweetValidator, legislationValidator, caseValidator } = require("../midd
 
 // Routes (exported to server)
 module.exports = (app) => {
+  app.get("/api/test", test)
   app.get("/api/users/me/", authenticate, get_user);
   app.get("/api/users/me/trackers", authenticate, get_trackers);
   app.post("/api/users", post_new_user);

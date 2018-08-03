@@ -7,7 +7,7 @@ export default class Login extends React.Component {
     e.preventDefault();
     var email = e.target.elements.email.value;
     var password = e.target.elements.password.value;
-    axios.post("/users/login", {
+    axios.post("api/users/login", {
       email: email,
       password: password
     })
