@@ -2,13 +2,8 @@ import React from "react";
 
 export default class Tweet extends React.Component {
 
-    showAlert(){
-        alert("Yay");
-    }
-
     render(){
         const tweet = this.props.data;
-
         return (
             <div className="tweetWrapper">
                 <p className="tweetText"> {tweet.text} </p>
