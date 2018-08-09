@@ -1,12 +1,18 @@
 import React from 'react';
-
 import Tweet from "./Tweet";
-import dummyData from "./dummyData"; // this s
+import { connect } from "react-redux";
 
 const Tweets = (props) => (
   <div>
-    {dummyData.data.tweets.map((data,i) => <Tweet key={i} data={data} />)}
+    <h2>Tweets</h2>
+    {props.tweets.map((data,i) => <Tweet key={i} data={data} /> )}
   </div>
 );
 
-export default Tweets;
+const mapStateToProps = (state) => {
+  return {
+    tweets: state.tweets
+  }
+};
+
+export default connect(mapStateToProps)(Tweets);

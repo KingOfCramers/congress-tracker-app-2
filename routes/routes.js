@@ -142,7 +142,7 @@ const delete_court_case = (req,res) => {
       .catch((e) => res.status(400).send(e));}
 
 const test = (req,res) => {
-  res.send({name: "THIS IS THE USERNAME"});
+  res.send({name: "FROM EXPRESS: HARRISON'S DATA"});
 };
 
 

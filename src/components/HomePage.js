@@ -8,7 +8,7 @@ class HomePage extends Component {
 
   componentDidMount(){
     this.callAPI()
-        .then(res => this.setState({ name: res.data.name }))
+        .then(res => this.setState({ name: res.name }))
         .catch(err => console.log(err));
     }
 
@@ -19,7 +19,7 @@ class HomePage extends Component {
         throw Error(response.message);
       }
 
-      return response;
+      return response.data;
     }
 
   render() {

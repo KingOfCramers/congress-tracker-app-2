@@ -14,9 +14,11 @@
     "mongoose": "^5.1.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^1.1.4",
+    "redux": "^4.0.0",
     "twitter-validate": "^1.0.8",
     "validator": "^10.3.0"
   },
@@ -25,12 +27,13 @@
     "mocha": "^5.1.1",
     "nodemon": "^1.17.4",
     "rewire": "^4.0.1",
-    "supertest": "^3.1.0"
+    "supertest": "^3.1.0",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "test": "mocha ./tests/*.test.js --timeout 10000 --exit",
     "test-watch": "export NODE_ENV=test || \"SET NODE_ENV=test\" && nodemon --exec \"npm test\"",
-    "dev-server": "nodemon api.js",
+    "dev-server": "node api.js",
     "dev": "concurrently \"npm run dev-server\" \"npm run start\"",
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -1,14 +1,11 @@
 import React from "react";
 
-export default class Tweet extends React.Component {
+const Tweet = (props) => {
+  return (
+      <div className="tweetWrapper">
+          <p className="tweetText"> {props.data.handle} </p>
+      </div>
+  );
+}
 
-    render(){
-        const data = this.props.data;
-
-        return (
-            <div className="tweetWrapper">
-                <p className="tweetText"> {data.account} </p>
-            </div>
-        );
-    }
-};
+export default Tweet;
