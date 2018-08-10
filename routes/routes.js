@@ -3,9 +3,8 @@ const { User } = require("../models/user");
 const path = require("path");
 const _ = require("lodash");
 
-// Drivers
 const get_trackers = (req,res) => {
-  User.findOne({_id: req.user._id}).then((user) => {
+  User.findOne({_id: "5b622e4611a17170180742c9"}).then((user) => { // ARTIFICIAL IMPORT
       res.status(200).send(user.trackers)
   })
   .catch((e) => {
@@ -154,7 +153,7 @@ const { tweetValidator, legislationValidator, caseValidator } = require("../midd
 module.exports = (app) => {
   app.get("/api/test", test)
   app.get("/api/users/me/", authenticate, get_user);
-  app.get("/api/users/me/trackers", authenticate, get_trackers);
+  app.get("/api/users/me/trackers", get_trackers); // Skip authentication for now...
   app.post("/api/users", post_new_user);
   app.post("/api/users/login", post_login_user, test);
   app.post("/api/users/me/trackers/court_cases", authenticate, caseValidator, post_court_case);

@@ -2,14 +2,24 @@ import React, { Component } from 'react';
 import axios from "axios";
 import { connect } from "react-redux";
 import { addTweet } from "../actions/tweets";
+import { addCase } from "../actions/cases";
 
 class HomePage extends Component {
 
   componentDidMount(){
     this.callAPI()
         .then(res => {
+          console.log(res);
           res.tweets.forEach((tweet) => {
-            this.props.dispatch(addTweet({handle: tweet.account}))
+            this.props.dispatch(addTweet({
+              handle: tweet.account
+            }));
+          });
+
+          res.court_cases.forEach((court_case) => {
+            this.props.dispatch(addCase({
+              case_name: court_case.case_name
+            }))
           })
         })
         .catch(err => console.log(err));
@@ -29,7 +39,7 @@ class HomePage extends Component {
       }
 
       return response.data;
-    }
+    } // Fetches data from backend
 
   render() {
     return (
@@ -45,7 +55,7 @@ const mapStateToProps = (state) => { // This lets us determine what aspects of t
   return {
     name: "",
     tweets: state.expenses,
-    filters: state.filters
+    legislation: state.legislation
   }
 }
 

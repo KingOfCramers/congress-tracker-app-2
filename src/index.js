@@ -9,13 +9,8 @@ import AppRouter from "./routers/AppRouter";
 // Redux
 import configureStore from "./store/configureStore";
 import { Provider } from "react-redux";
-import { addTweet } from "./actions/tweets";
+// import { addTweet } from "./actions/tweets";
 const store = configureStore();
-
-store.dispatch(addTweet({handle: "harrisoncramer"}))
-setTimeout(() => {
-  store.dispatch(addTweet({handle: "timmy"}))
-},3000)
 
 // Link Redux + React
 const jsx = (
