@@ -5,7 +5,6 @@ import selectCases from "../selectors/cases";
 
 const Cases = (props) => (
   <div>
-    <h2 className="trackerTitle">My Court Cases</h2>
     {props.cases.map((data,i) => <Case key={i} data={data} /> )}
   </div>
 );

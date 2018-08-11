@@ -1,18 +1,18 @@
 import React from 'react';
 import Tweet from "./Tweet";
 import { connect } from "react-redux";
+import tweetFilter from "../selectors/tweets";
 
-const Tweets = (props) => (
+const TweetList = (props) => (
   <div>
-    <h2>Tweets</h2>
     {props.tweets.map((data,i) => <Tweet key={i} data={data} /> )}
   </div>
 );
 
 const mapStateToProps = (state) => {
   return {
-    tweets: state.tweets
+    tweets: tweetFilter(state.tweets, state.filters) // must be specific one...
   }
 };
 
-export default connect(mapStateToProps)(Tweets);
+export default connect(mapStateToProps)(TweetList);

@@ -5,7 +5,7 @@ import HomePage from "../components/HomePage";
 import Header from "../components/Header.js";
 import FourOhFour from "../components/FourOhFour";
 import HelpPage from "../components/HelpPage";
-import Tweets from "../components/Tweets";
+import TweetDashboard from "../components/TweetDashboard";
 import CaseDashboard from "../components/CaseDashboard";
 
 
@@ -18,7 +18,7 @@ class AppRouter extends Component {
           <Header/>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/tweets" component={Tweets} />
+            <Route path="/tweets" component={TweetDashboard} />
             <Route path="/cases" component={CaseDashboard} />
             <Route path="/help" component={HelpPage} />
             <Route component={FourOhFour}/>

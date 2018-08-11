@@ -1,10 +1,10 @@
+import React from "react";
 import { connect } from "react-redux";
 import { setTextFilter } from "../actions/filters";
 
-import React from "react";
-const CaseFilter = (props) => (
+const TweetFilter = (props) => (
   <div>
-    <h3 className="trackerTitle">My Court Cases</h3>
+    <h3 className="trackerTitle">My Twitter Handles</h3>
     <label for="search">Search:</label>
     <input type="text" value={props.filters.text} onChange={(e) => {
       props.dispatch(setTextFilter(e.target.value))
@@ -18,4 +18,4 @@ const mapStateToProps = (state) => { // This lets us determine what aspects of t
   }
 }
 
-export default connect(mapStateToProps)(CaseFilter);
+export default connect(mapStateToProps)(TweetFilter);
