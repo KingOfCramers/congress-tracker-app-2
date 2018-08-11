@@ -7,7 +7,7 @@
     },
     "development" : {
         "PORT" : 4000,
-        "MONGODB_URI" : "mongodb://localhost:27017/YourDevDatabase",
+        "MONGODB_URI" : "mongodb://localhost:27017/DevDatabase",
         "JWT_SECRET" : "yoursaltingthinghere",
         "RECAP_KEY" : "iVMrUKBl7IglSLudpXP4SP374XF2Q1wrXfqE51LG"
     }

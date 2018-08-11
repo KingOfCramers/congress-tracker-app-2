@@ -4,11 +4,12 @@ const path = require("path");
 const _ = require("lodash");
 
 const get_trackers = (req,res) => {
-  User.findOne({_id: "5b622e4611a17170180742c9"}).then((user) => { // ARTIFICIAL IMPORT
+  User.findOne({_id: "5b47b36cc02b2a867325ef8f"}).then((user) => { // ARTIFICIAL IMPORT
       res.status(200).send(user.trackers)
   })
   .catch((e) => {
-      res.status(400).send();
+    console.log(e)
+      res.status(400).send(e);
   })};
 const get_user = (req,res) => {
   User.findOne({_id: req.user._id}).then((user) => {

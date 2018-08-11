@@ -33,7 +33,8 @@
   "scripts": {
     "test": "mocha ./tests/*.test.js --timeout 10000 --exit",
     "test-watch": "export NODE_ENV=test || \"SET NODE_ENV=test\" && nodemon --exec \"npm test\"",
-    "dev-server": "node api.js",
+    "sass" : "sass --watch src/styles/scss:src/styles/css",
+    "dev-server": "nodemon api.js",
     "dev": "concurrently \"npm run dev-server\" \"npm run start\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
