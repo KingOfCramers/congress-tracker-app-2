@@ -5,8 +5,7 @@ import { setTextFilter } from "../actions/filters";
 const TweetFilter = (props) => (
   <div>
     <h3 className="trackerTitle">My Twitter Handles</h3>
-    <label for="search">Search:</label>
-    <input type="text" value={props.filters.text} onChange={(e) => {
+    <input placeholder="search..." type="text" value={props.filters.text} onChange={(e) => {
       props.dispatch(setTextFilter(e.target.value))
     }}/>
   </div>

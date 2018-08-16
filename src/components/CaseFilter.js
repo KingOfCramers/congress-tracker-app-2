@@ -5,8 +5,7 @@ import React from "react";
 const CaseFilter = (props) => (
   <div>
     <h3 className="trackerTitle">My Court Cases</h3>
-    <label for="search">Search:</label>
-    <input type="text" value={props.filters.text} onChange={(e) => {
+    <input type="text" placeholder="search..." value={props.filters.text} onChange={(e) => {
       props.dispatch(setTextFilter(e.target.value))
     }}/>
   </div>
