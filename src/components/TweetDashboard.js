@@ -4,6 +4,7 @@ import TweetFilter from "./TweetFilter";
 import TweetForm from "./TweetForm";
 import { connect } from "react-redux";
 import { addTweet } from "../actions/tweets";
+import { setTextFilter } from "../actions/filters";
 
 const TweetDashboard = (props) => (
   <div>
@@ -11,6 +12,7 @@ const TweetDashboard = (props) => (
     <TweetList />
     <TweetForm onSubmit={(tweet) => {
       props.dispatch(addTweet({ handle: tweet.account }));
+      props.dispatch(setTextFilter(""));
     }} />
   </div>
 );
